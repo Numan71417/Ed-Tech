@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+input{
+    padding: 5px;
+    border-radius: 0.6rem;
+    padding-left: 12px;
+  }
+
+  label{
+    color: white
+  }
