@@ -118,7 +118,7 @@ function Home() {
               link: "/signup",
               active: false,
             }}
-            codeColor={"text-yellow-25"}
+            codeColor={"grad-text"}
             codeblock={`<!DOCTYPE html>\n <html lang="en">\n<head>\n<title>This is myPage</title>\n</head>\n<body>\n<h1><a href="/">Header</a></h1>\n<nav> <a href="/one">One</a> <a href="/two">Two</a> <a href="/three">Three</a>\n</nav>\n</body>`}
             backgroundGradient={<div className="codeblock1 absolute"></div>}
           />

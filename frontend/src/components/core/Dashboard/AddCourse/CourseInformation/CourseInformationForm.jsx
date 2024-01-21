@@ -24,23 +24,23 @@ export default function CourseInformationForm() {
     setValue,
     getValues,
     formState: { errors },
-  } = useForm();
+  } = useForm(); 
 
-  const courseCategories = ['UI/UX','Logo Designing', 'Adobe Illustrator','Adobe PhotoShop']
+  // const courseCategories = ['UI/UX','Logo Designing', 'Adobe Illustrator','Adobe PhotoShop'] 
 
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
   const { course, editCourse } = useSelector((state) => state.course);
   const [loading, setLoading] = useState(false);
-  // const [courseCategories, setCourseCategories] = useState([]);
+  const [courseCategories, setCourseCategories] = useState([]);
 
   useEffect(() => {
     const getCategories = async () => {
       setLoading(true);
       const categories = await fetchCourseCategories();
       if (categories.length > 0) {
-        // console.log("categories", categories)
-        // setCourseCategories(categories);
+        console.log("categories", categories)
+        setCourseCategories(categories);
       }
       setLoading(false);
     };
@@ -282,8 +282,8 @@ export default function CourseInformationForm() {
           </option>
           {!loading &&
             courseCategories?.map((category, indx) => (
-              <option key={indx} value={category}>
-                {category}
+              <option key={category._id} value={category._id}>
+                {category.name}
               </option>
             ))}
         </select>

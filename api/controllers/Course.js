@@ -25,7 +25,7 @@ exports.createCourse = async (req, res) => {
       instructions,
     } = req.body;
     // Get thumbnail image from request files
-    const thumbnail = req.files.thumbnailImage;
+    const thumbnail = req.body.thumbnailImage;
 
     console.log(courseName);
     console.log(courseDescription);
@@ -78,11 +78,11 @@ exports.createCourse = async (req, res) => {
       });
     }
     // Upload the Thumbnail to Cloudinary
-    const thumbnailImage = await uploadImageToCloudinary(
-      thumbnail,
-      process.env.FOLDER_NAME
-    );
-    console.log(thumbnailImage);
+    // const thumbnailImage = await uploadImageToCloudinary(
+    //   thumbnail,
+    //   process.env.FOLDER_NAME
+    // );
+    // console.log(thumbnailImage);
     // Create a new course with the given details
     const newCourse = await Course.create({
       courseName,
@@ -92,7 +92,8 @@ exports.createCourse = async (req, res) => {
       price,
       tag,
       category: categoryDetails._id,
-      thumbnail: thumbnailImage.secure_url,
+      // thumbnail: thumbnailImage.secure_url,
+      thumbnail,
       status: status,
       instructions,
     });
@@ -148,15 +149,15 @@ exports.editCourse = async (req, res) => {
     }
 
     // If Thumbnail Image is found, update it
-    if (req.files) {
-      console.log("thumbnail update");
-      const thumbnail = req.files.thumbnailImage;
-      const thumbnailImage = await uploadImageToCloudinary(
-        thumbnail,
-        process.env.FOLDER_NAME
-      );
-      course.thumbnail = thumbnailImage.secure_url;
-    }
+    // if (req.files) {
+    //   console.log("thumbnail update");
+    //   const thumbnail = req.files.thumbnailImage;
+    //   const thumbnailImage = await uploadImageToCloudinary(
+    //     thumbnail,
+    //     process.env.FOLDER_NAME
+    //   );
+    //   course.thumbnail = thumbnailImage.secure_url;
+    // }
 
     // Update only the fields that are present in the request body
     for (const key in updates) {

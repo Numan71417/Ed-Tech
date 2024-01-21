@@ -67,13 +67,19 @@ export const fetchCourseDetails = async (courseId) => {
 };
 
 // create course categories
-export const createCategorey = async (data) => {
+export const createCategorey = async (data, token) => {
   console.log("createCategorey ------->", data);
   try {
-    const response = await apiConnector("POST", CREATE_CATEGORIES_API, {
+    const response = await apiConnector("POST", CREATE_CATEGORIES_API, 
+    {
       name: data.categoryName,
       description: data.categoryDescription,
-    });
+    },
+    {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${token}`,
+    }
+    );
 
     if (!response?.data?.success) {
       throw new Error("Could Not Fetch Course Categories");
@@ -200,9 +206,10 @@ export const createSection = async (data, token) => {
 // create a subsection
 export const createSubSection = async (data, token) => {
   let result = null;
+  const {sectionId,title,description,videoUrl} = data;
   const toastId = toast.loading("Loading...");
   try {
-    const response = await apiConnector("POST", CREATE_SUBSECTION_API, data, {
+    const response = await apiConnector("POST", CREATE_SUBSECTION_API, {sectionId,title,description,videoUrl}, {
       Authorization: `Bearer ${token}`,
     });
     console.log("CREATE SUB-SECTION API RESPONSE............", response);

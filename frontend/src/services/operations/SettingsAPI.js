@@ -4,6 +4,7 @@ import { setUser } from "../../slices/profileSlice";
 import { apiConnector } from "../apiconnector";
 import { settingsEndpoints } from "../apis";
 import { logout } from "./authAPI";
+import { setLocalStorage } from "../setLocalStorage";
 
 const {
   UPDATE_DISPLAY_PICTURE_API,
@@ -12,14 +13,14 @@ const {
   DELETE_PROFILE_API,
 } = settingsEndpoints;
 
-export function updateDisplayPicture(token, formData) {
+export function updateDisplayPicture(token, image,userId) {
   return async (dispatch) => {
     const toastId = toast.loading("Loading...");
     try {
       const response = await apiConnector(
         "PUT",
         UPDATE_DISPLAY_PICTURE_API,
-        formData,
+        {userId,image},
         {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
@@ -35,6 +36,7 @@ export function updateDisplayPicture(token, formData) {
       }
       toast.success("Display Picture Updated Successfully");
       dispatch(setUser(response.data.data));
+      setLocalStorage('user', image);
     } catch (error) {
       console.log("UPDATE_DISPLAY_PICTURE_API API ERROR............", error);
       toast.error("Could Not Update Display Picture");

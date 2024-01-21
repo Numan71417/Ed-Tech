@@ -1,5 +1,5 @@
 import React from "react";
-import { createCategorey } from "../../../../../services/operations/courseDetailsAPI";
+import { createCategorey, fetchCourseCategories } from "../../../../../services/operations/courseDetailsAPI";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 
@@ -14,9 +14,16 @@ const CreateCategory = () => {
   } = useForm();
   const dispatch = useDispatch();
 
+  
   function createCategoryHandler(data) {
-    dispatch(createCategorey(data));
-    console.log(data);
+    const token = localStorage.getItem('token');
+    
+    if(!token){
+      toast.error("Please authenticate")
+    }
+    dispatch(createCategorey(data,token));
+    distach(fetchCourseCategories)
+    console.log(data,token);
   }
 
   return (

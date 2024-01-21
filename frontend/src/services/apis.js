@@ -34,6 +34,8 @@ export const courseEndpoints = {
 
   EDIT_COURSE_API: BASE_URL + "/course/editCourse",
 
+  CREATE_CATEGORIES_API : BASE_URL + '/course/createCategory',
+
   COURSE_CATEGORIES_API: BASE_URL + "/course/showAllCategories",
 
   CREATE_COURSE_API: BASE_URL + "/course/createCourse",
@@ -60,6 +62,7 @@ export const courseEndpoints = {
   LECTURE_COMPLETION_API: BASE_URL + "/course/updateCourseProgress",
 
   CREATE_RATING_API: BASE_URL + "/course/createRating",
+
 };
 
 // RATINGS AND REVIEWS

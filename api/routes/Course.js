@@ -58,40 +58,51 @@ const {
 // ********************************************************************************************************
 
 // Courses can Only be Created by Instructors
-router.post("/createCourse", auth, isInstructor, createCourse);
+router.post("/createCourse", auth,  createCourse);
+// router.post("/createCourse",  createCourse);
 //Add a Section to a Course
-router.post("/addSection", auth, isInstructor, createSection);
+router.post("/addSection", auth,  createSection);
+// router.post("/addSection",  createSection);
 // Update a Section
-router.post("/updateSection", auth, isInstructor, updateSection);
+router.post("/updateSection", auth,  updateSection);
+// router.post("/updateSection",  updateSection);
 // Delete a Section
-router.post("/deleteSection", auth, isInstructor, deleteSection);
+router.post("/deleteSection", auth,  deleteSection);
+// router.post("/deleteSection",  deleteSection);
 // Edit Sub Section
-router.post("/updateSubSection", auth, isInstructor, updateSubSection);
+router.post("/updateSubSection", auth,  updateSubSection);
+// router.post("/updateSubSection",  updateSubSection);
 // Delete Sub Section
-router.post("/deleteSubSection", auth, isInstructor, deleteSubSection);
+router.post("/deleteSubSection", auth,  deleteSubSection);
+// router.post("/deleteSubSection",   deleteSubSection);
 // Add a Sub Section to a Section
-router.post("/addSubSection", auth, isInstructor, createSubSection);
+router.post("/addSubSection", auth,  createSubSection);
+// router.post("/addSubSection",   createSubSection);
 // Get all Registered Courses
 router.get("/getAllCourses", getAllCourses);
 // Get Details for a Specific Courses
 router.post("/getCourseDetails", getCourseDetails);
 // Get Details for a Specific Courses
 router.post("/getFullCourseDetails", auth, getFullCourseDetails);
+// router.post("/getFullCourseDetails",  getFullCourseDetails);
 // Edit Course routes
-router.post("/editCourse", auth, isInstructor, editCourse);
+router.post("/editCourse", auth,  editCourse);
+// router.post("/editCourse",   editCourse);
 // Get all Courses Under a Specific Instructor
-router.get("/getInstructorCourses", auth, isInstructor, getInstructorCourses);
+router.get("/getInstructorCourses", auth,  getInstructorCourses);
+// router.get("/getInstructorCourses",  getInstructorCourses);
 // Delete a Course
 router.delete("/deleteCourse", deleteCourse);
 
-router.post("/updateCourseProgress", auth, isStudent, updateCourseProgress);
+router.post("/updateCourseProgress", auth,  updateCourseProgress);
+// router.post("/updateCourseProgress",   updateCourseProgress);
 
 // ********************************************************************************************************
 //                                      Category routes (Only by Admin)
 // ********************************************************************************************************
 // Category can Only be Created by Admin
 // TODO: Put IsAdmin Middleware here
-router.post("/createCategory", auth, isAdmin, createCategory);
+router.post("/createCategory",  createCategory);
 // router.get("/showAllCategories", showAllCategories);
 router.post("/getCategoryPageDetails", categoryPageDetails);
 
@@ -101,7 +112,8 @@ router.get("/showAllCategories", showAllCategories);
 // ********************************************************************************************************
 //                                      Rating and Review
 // ********************************************************************************************************
-router.post("/createRating", auth, isStudent, createRating);
+router.post("/createRating", auth,  createRating);
+// router.post("/createRating",  createRating);
 router.get("/getAverageRating", getAverageRating);
 router.get("/getReviews", getAllRating);
 

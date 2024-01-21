@@ -28,7 +28,7 @@ export default function Sidebar() {
 
   return (
     <div>
-      <div className="flex h-[calc(100vh-3.5rem)] min-w-[220px] flex-col border-r-[1px] border-r-richblack-700 bg-richblack-800 py-10">
+      <div className="flex h-[calc(100vh-3.5rem)] min-w-[220px] flex-col border-r-[1px] border-r-richblack-700 bg-richblack-800 py-10 sm:min-w-[90px] md:min-w-[200px] ">
         <div className="flex flex-col">
           {sidebarLinks.map((link) => {
             if (link.type && user?.accountType !== link.type) return null;
@@ -38,8 +38,8 @@ export default function Sidebar() {
           })}
         </div>
 
-        <div className="mx-auto mt-6 mb-6 h-[1px] w-10/12 bg-richblack-700" />
-        <div className="flex flex-col">
+        <div className="mx-auto mt-6 mb-6 h-[1px] w-10/12 bg-richblack-700 " />
+        <div className="flex flex-col ">
           <SidebarLink
             link={{ name: "Settings", path: "/dashboard/settings" }}
             iconName="VscSettingsGear"
@@ -59,7 +59,7 @@ export default function Sidebar() {
           >
             <div className="flex items-center gap-x-2">
               <VscSignOut className="text-lg" />
-              <span>Logout</span>
+              <span className="sm:hidden">Logout</span>
             </div>
           </button>
         </div>

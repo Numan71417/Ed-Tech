@@ -29,8 +29,15 @@ import ViewCourse from "./pages/ViewCourse";
 import VideoDetails from "./components/core/ViewCourse/VideoDetails";
 import Instructor from "./components/core/Dashboard/InstructorDashboard/Instructor";
 
+
+import firebaseConfig from "../firebaseConfig";
+import firebase from "firebase/compat/app";
+
+firebase.initializeApp(firebaseConfig)
+
 function App() {
   const { user } = useSelector((state) => state.profile);
+
 
   return (
     <div className="w-screen min-h-screen bg-[#00171e] flex flex-col font-inter">

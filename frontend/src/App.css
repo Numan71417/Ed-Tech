@@ -8,11 +8,17 @@
   box-sizing: border-box;
 }
 
-.gradient-text {
+.text-grad {
   background: linear-gradient(-100deg, #a6ffcb 1%, #12d8fa 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.bg-grad{
+  background: rgb(31,162,255);
+  background: linear-gradient(173deg, rgba(31,162,255,1) 0%, rgba(18,216,250,1) 59%, rgba(166,255,203,1) 96%);
+}
+
 
 .video-shadow {
   box-shadow: 20px 20px 0 0 white;

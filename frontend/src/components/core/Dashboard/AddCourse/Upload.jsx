@@ -1,11 +1,15 @@
 import { useEffect, useRef, useState } from "react"
-import { useDropzone } from "react-dropzone"
-import { FiUploadCloud } from "react-icons/fi"
+// import { useDropzone } from "react-dropzone"
+// import { FiUploadCloud } from "react-icons/fi"
 // import { useSelector } from "react-redux"
+
+import firebase from "firebase/compat/app";
+import "firebase/compat/storage";
+import { getStorage, ref, deleteObject } from "firebase/storage";
 
 import "video-react/dist/video-react.css"
 import { Player } from "video-react"
-
+const loadgif = "https://tamilnaducouncil.ac.in/wp-content/uploads/2018/10/loading-gif.gif"
 export default function Upload({
   name,
   label,
@@ -17,26 +21,55 @@ export default function Upload({
   editData = null,
 }) {
   // const { course } = useSelector((state) => state.course)
-  const [selectedFile, setSelectedFile] = useState(null)
+  const [selectedFile, setSelectedFile] = useState('')
   const [previewSource, setPreviewSource] = useState(
     viewData ? viewData : editData ? editData : ""
   )
+  const [load,setLoad] = useState(false);
   const inputRef = useRef(null)
 
-  const onDrop = (acceptedFiles) => {
-    const file = acceptedFiles[0]
-    if (file) {
-      previewFile(file)
-      setSelectedFile(file)
-    }
-  }
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    accept: !video
-      ? { "image/*": [".jpeg", ".jpg", ".png"] }
-      : { "video/*": [".mp4"] },
-    onDrop,
-  })
+
+  // const onDrop = (acceptedFiles) => {
+  //   const file = acceptedFiles[0]
+  //   console.log(file)
+  //   if (file) {
+  //     previewFile(file)
+  //     // setSelectedFile(file)
+  //     // handleupload(file);
+  //   }
+  // }
+
+  // const { getRootProps, getInputProps, isDragActive } = useDropzone({
+  //   accept: !video
+  //     ? { "image/*": [".jpeg", ".jpg", ".png"] }
+  //     : { "video/*": [".mp4"] },
+  //   onDrop,
+  // })
+
+  const handleupload = async (e) => {
+    setLoad(true);
+    const selectedFile = e.target.files[0];
+   
+    if (selectedFile) {
+      const storageRef = firebase.storage().ref();
+      const fileRef = storageRef.child(selectedFile.name);
+      await fileRef.put(selectedFile).then((snapshot) => {
+        snapshot.ref.getDownloadURL().then((downloadURL) => {
+          console.log(downloadURL);
+          setSelectedFile(downloadURL)
+          setPreviewSource(downloadURL)
+          setLoad(false)
+        });
+      });
+    } else {
+      console.log("Please select image to upload");
+      setLoad(false);
+    }
+    setLoad(false)
+  };
+
+  
 
   const previewFile = (file) => {
     // console.log(file)
@@ -63,18 +96,17 @@ export default function Upload({
         {label} {!viewData && <sup className="text-pink-200">*</sup>}
       </label>
       <div
-        className={`${
-          isDragActive ? "bg-richblack-600" : "bg-richblack-700"
-        } flex min-h-[250px] cursor-pointer items-center justify-center rounded-md border-2 border-dotted border-richblack-500`}
+        className={`bg-richblack-700 flex min-h-[250px] cursor-pointer items-center justify-center rounded-md border-2 border-dotted border-richblack-500`}
       >
+
         {previewSource ? (
           <div className="flex w-full flex-col p-6">
             {!video ? (
-              <img
+                <img
                 src={previewSource}
                 alt="Preview"
                 className="h-full w-full rounded-md object-cover"
-              />
+                /> 
             ) : (
               <Player aspectRatio="16:9" playsInline src={previewSource} />
             )}
@@ -93,24 +125,23 @@ export default function Upload({
             )}
           </div>
         ) : (
-          <div
-            className="flex w-full flex-col items-center p-6"
-            {...getRootProps()}
-          >
-            <input {...getInputProps()} ref={inputRef} />
-            <div className="grid aspect-square w-14 place-items-center rounded-full bg-pure-greys-800">
-              <FiUploadCloud className="text-2xl text-yellow-50" />
+          load?(
+            <img src={loadgif} alt="loading.." />
+          ):(
+          <label htmlFor="img">
+            <div
+              className="flex w-full flex-col items-center p-6"
+            >
+              <h2 className="text-white underline cursor-pointer " >Upload file</h2>
+              <input ref={inputRef} type="file" className="hidden" id="img" onChange={handleupload} />
+             
+              <ul className="mt-10 flex list-disc justify-between space-x-12 text-center  text-xs text-richblack-200">
+                <li>Aspect ratio 16:9</li>
+                <li>Recommended size 1024x576</li>
+              </ul>
             </div>
-            <p className="mt-2 max-w-[200px] text-center text-sm text-richblack-200">
-              Drag and drop an {!video ? "image" : "video"}, or click to{" "}
-              <span className="font-semibold text-yellow-50">Browse</span> a
-              file
-            </p>
-            <ul className="mt-10 flex list-disc justify-between space-x-12 text-center  text-xs text-richblack-200">
-              <li>Aspect ratio 16:9</li>
-              <li>Recommended size 1024x576</li>
-            </ul>
-          </div>
+          </label>
+          )
         )}
       </div>
       {errors[name] && (

@@ -38,7 +38,7 @@ export default function SubSectionModal({
 
   useEffect(() => {
     if (view || edit) {
-      // console.log("modalData", modalData)
+      console.log("modalData", modalData)
       setValue("lectureTitle", modalData.title);
       setValue("lectureDesc", modalData.description);
       setValue("lectureVideo", modalData.videoUrl);
@@ -92,7 +92,8 @@ export default function SubSectionModal({
   };
 
   const onSubmit = async (data) => {
-    // console.log(data)
+    // console.log('data------------:  ',data);
+    // console.log(modalData)
     if (view) return;
 
     if (edit) {
@@ -104,13 +105,20 @@ export default function SubSectionModal({
       return;
     }
 
-    const formData = new FormData();
-    formData.append("sectionId", modalData);
-    formData.append("title", data.lectureTitle);
-    formData.append("description", data.lectureDesc);
-    formData.append("video", data.lectureVideo);
+    // const formData = new FormData();
+    // formData.append("sectionId", modalData);
+    // formData.append("title", data.lectureTitle);
+    // formData.append("description", data.lectureDesc);
+    // formData.append("video", data.lectureVideo);
+    const subData = {
+      sectionId : modalData,
+      title : data.lectureTitle,
+      description : data.lectureDesc,
+      videoUrl : data.lectureVideo
+    }
     setLoading(true);
-    const result = await createSubSection(formData, token);
+    console.log(subData);
+    const result = await createSubSection(subData, token);
     if (result) {
       // update the structure of course
       const updatedCourseContent = course.courseContent.map((section) =>
