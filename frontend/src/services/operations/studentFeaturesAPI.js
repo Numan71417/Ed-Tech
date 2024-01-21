@@ -72,8 +72,8 @@ export async function buyCourse(
 
     console.log("Before options object inside student feature ali---->");
     const options = {
-      // key: "rzp_test_Qq1R28RDozLWGC",
-      key: "rzp_live_1Ecoo7TfWzMDnl",
+      key: "rzp_test_Qq1R28RDozLWGC",
+      // key: "rzp_live_1Ecoo7TfWzMDnl",
       currency: orderResponse.data.data?.currency,
       amount: `${orderResponse.data.data?.amount}`,
       order_id: orderResponse.data.data?.id,
