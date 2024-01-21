@@ -1,5 +1,6 @@
 // const BASE_URL = import.meta.env.VITE_BASE_URL;
-const BASE_URL = "http://localhost:5000/api/v1/auth";
+// const BASE_URL = "http://localhost:5000/api/v1/auth";
+const BASE_URL = "https://sbdesign-api.vercel.app/api/v1/auth";
 
 console.log(BASE_URL);
 
