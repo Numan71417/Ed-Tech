@@ -1,10 +1,10 @@
 import { toast } from "react-hot-toast";
 import { studentEndpoints } from "../apis";
 import { apiConnector } from "../apiconnector";
-import rzpLogo from "../../assets/Logo/rzp_logo.png";
+// import rzpLogo from "../../assets/Logo/rzp_logo.png";
 import { setPaymentLoading } from "../../slices/courseSlice";
 import { resetCart } from "../../slices/cartSlice";
-
+const rzpLogo = 'https://static.vecteezy.com/system/resources/previews/012/738/782/original/sb-logo-design-initial-sb-letter-logo-icon-design-pro-free-vector.jpg'
 const {
   COURSE_PAYMENT_API,
   COURSE_VERIFY_API,
