@@ -1,7 +1,7 @@
 const firebaseConfig = {
-    apiKey: import.meta.env.API_KEY,
+    apiKey: 'AIzaSyBLhBBzkJk1GcUH858eVbv2SwQnrzbl__o',
     authDomain: "realtime-chat-app-85e57.firebaseapp.com",
-    databaseURL: import.meta.env.DATABASE,
+    databaseURL: 'https://realtime-chat-app-85e57-default-rtdb.firebaseio.com',
     projectId: "realtime-chat-app-85e57",
     storageBucket: "realtime-chat-app-85e57.appspot.com",
     messagingSenderId: "1037343284585",
