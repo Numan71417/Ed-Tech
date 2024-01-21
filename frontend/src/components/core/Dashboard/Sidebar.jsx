@@ -59,7 +59,7 @@ export default function Sidebar() {
           >
             <div className="flex items-center gap-x-2">
               <VscSignOut className="text-lg" />
-              <span className="sm:hidden">Logout</span>
+              <span className="">Logout</span>
             </div>
           </button>
         </div>
