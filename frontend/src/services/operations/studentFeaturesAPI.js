@@ -34,8 +34,6 @@ export async function buyCourse(
   dispatch
 ) {
   console.log(
-    "Student Feature Apii---->",
-
     "courses--->",
     courses,
     "userDetailes--->",
@@ -55,7 +53,7 @@ export async function buyCourse(
     }
     console.log("before api connector");
     //initiate the order
-    // console.log("apiConnector 888888888---->", token);
+
     const orderResponse = await apiConnector(
       "POST",
       COURSE_PAYMENT_API,
@@ -73,14 +71,12 @@ export async function buyCourse(
     //options
 
     console.log("Before options object inside student feature ali---->");
-    console.log(process.env.RAZORPAY_KEY);
-    console.log(process.env);
     const options = {
       key: "rzp_test_Qq1R28RDozLWGC",
       currency: orderResponse.data.data?.currency,
       amount: `${orderResponse.data.data?.amount}`,
       order_id: orderResponse.data.data?.id,
-      name: "StudyNotion",
+      name: "SB Designs",
       description: "Thank You for Purchasing the Course",
       image: rzpLogo,
       prefill: {
@@ -166,7 +162,7 @@ async function verifyPayment(bodyData, token, navigate, dispatch) {
     if (!response?.data?.success) {
       throw new Error(response?.data?.message);
     }
-    toast.success("payment Successful, ypou are addded to the course");
+    toast.success("payment Successful, you are addded to the course");
     navigate("/dashboard/enrolled-courses");
     dispatch(resetCart());
   } catch (error) {

@@ -25,12 +25,7 @@ app.use(cookieParser());
 // for connecting frontend from backend
 app.use(
   cors({
-
-
-    // origin:"https://study-notion-made-by-atul-singh.netlify.app",
-    origin:"*",
-
-    
+    origin:"*",  
     credentials: true, //access-control-allow-credentials:true
     optionSuccessStatus: 200,
   })
