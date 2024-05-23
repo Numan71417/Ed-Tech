@@ -46,11 +46,10 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
   };
 
   // console.log("Student already enrolled ", course?.studentsEnroled, user?._id)
-
   return (
     <>
       <div
-        className={`flex flex-col gap-4 rounded-md  p-4 text-richblack-5 bg-richblack-700`}
+        className={`flex flex-col gap-4 rounded-lg  p-4 text-richblack-5 bg-richblack-700`}
       >
         {/* Course Image */}
         <img
@@ -65,7 +64,7 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
           </div>
           <div className="flex flex-col gap-4 ">
             <button
-              className="yellowButton"
+              className="bg-yellow-50 rounded-md p2 py-2 w-[50%]  "
               onClick={
                 user && course?.studentsEnrolled?.includes(user?._id)
                   ? () => navigate("/dashboard/enrolled-courses")
@@ -77,8 +76,8 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
                 : "Buy Now"}
             </button>
             {(!user || !course?.studentsEnrolled?.includes(user?._id)) && (
-              <button onClick={handleAddToCart} className="blackButton ">
-                Add to Cart
+              <button onClick={handleAddToCart} className="bg-richblack-800 text-white rounded-md p2 py-2 w-[50%]">
+                Add to Cart 🛒
               </button>
             )}
           </div>
@@ -96,8 +95,8 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
               {course?.instructions?.map((item, i) => {
                 return (
                   <p className={`flex gap-2`} key={i}>
-                    <BsFillCaretRightFill />
-                    <span>{item}</span>
+                    {/* <BsFillCaretRightFill /> */}
+                    {item}
                   </p>
                 );
               })}

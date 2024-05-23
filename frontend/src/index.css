@@ -2,12 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-input{
-    padding: 5px;
-    border-radius: 0.6rem;
-    padding-left: 12px;
-  }
+input {
+  padding: 5px;
+  border-radius: 0.6rem;
+  padding-left: 12px;
+}
 
-  label{
-    color: white
-  }
+label {
+  color: white;
+}
+
+input {
+  background: #0000002d;
+  color: white;
+}
+
+@media only screen and (max-width:450px ){
+    input::placeholder{
+      font-size: 0.6rem;
+    }
+    input{
+      width: 100%;
+    }
+    label{
+      font-size: 0.8rem;
+    }
+}

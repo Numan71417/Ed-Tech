@@ -79,7 +79,7 @@ const Catalog = () => {
     
           {/* Section 1 */}
           <div className=" mx-auto box-content w-full max-w-maxContentTab px-4 py-12 lg:max-w-maxContent">
-            <div className="section_heading">Courses to get you started</div>
+            <div className="section_heading text-white font-bold">Courses to get you started</div>
             <div className="my-4 flex border-b border-b-richblack-600 text-sm">
               <p
                 className={`px-4 py-2 ${
@@ -108,27 +108,16 @@ const Catalog = () => {
               />
             </div>
           </div>
-          {/* Section 2 */}
-          <div className=" mx-auto box-content w-full max-w-maxContentTab px-4 py-12 lg:max-w-maxContent">
-            <div className="section_heading">
-              Top courses in {catalogPageData?.data?.differentCategory?.name}
-            </div>
-            <div className="py-8">
-              <CourseSlider
-                Courses={catalogPageData?.data?.differentCategory?.courses}
-              />
-            </div>
-          </div>
     
           {/* Section 3 */}
           <div className=" mx-auto box-content w-full max-w-maxContentTab px-4 py-12 lg:max-w-maxContent">
-            <div className="section_heading">Frequently Bought</div>
+            <div className="section_heading text-white text-bold">Frequently Bought</div>
             <div className="py-8">
-              <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {catalogPageData?.data?.mostSellingCourses
                   ?.slice(0, 4)
                   .map((course, i) => (
-                    <CourseCard course={course} key={i} Height={"h-[400px]"} />
+                    <CourseCard course={course} key={i} Height={"sm:h-[350px] h-[250px]"} />
                   ))}
               </div>
             </div>

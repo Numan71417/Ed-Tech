@@ -28,7 +28,7 @@ export default function Sidebar() {
 
   return (
     <div>
-      <div className="flex h-[calc(100vh-3.5rem)] min-w-[220px] flex-col border-r-[1px] border-r-richblack-700 bg-richblack-800 py-10 sm:min-w-[90px] md:min-w-[200px] ">
+      <div className="flex h-[calc(100vh-3.5rem)] md:min-w-[220px] flex-col border-r-[1px] border-r-richblack-700 rounded-r-md bg-richblack-800 py-10 min-w-[5px] sm:min-w-[200px] ">
         <div className="flex flex-col">
           {sidebarLinks.map((link) => {
             if (link.type && user?.accountType !== link.type) return null;
@@ -55,11 +55,11 @@ export default function Sidebar() {
                 btn2Handler: () => setConfirmationModal(null),
               })
             }
-            className="px-8 py-2 text-sm font-medium text-richblack-300"
+            className="sm:px-8 px-3 py-2 text-sm font-medium text-richblack-300"
           >
-            <div className="flex items-center gap-x-2">
-              <VscSignOut className="text-lg" />
-              <span className="">Logout</span>
+            <div className="flex items-center gap-1 sm:gap-x-2">
+              <VscSignOut className="text-lg " />
+              <span className="hidden sm:block">Logout</span>
             </div>
           </button>
         </div>

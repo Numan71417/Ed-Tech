@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { updateProfile } from "../../../../services/operations/SettingsAPI";
 import IconBtn from "../../../common/IconBtn";
 
-const genders = ["Male", "Female", "Non-Binary", "Prefer not to say", "Other"];
+const genders = ["Male", "Female", "Prefer not to say", "Other"];
 
 export default function EditProfile() {
   const { user } = useSelector((state) => state.profile);
@@ -104,15 +104,15 @@ export default function EditProfile() {
                 </span>
               )}
             </div>
-            <div className="flex flex-col gap-2 lg:w-[48%]">
-              <label htmlFor="gender" className="lable-style">
+            <div className="flex flex-col gap-2 lg:w-[48%] w-[40%] ">
+              <label htmlFor="gender" className="lable-style ">
                 Gender
               </label>
               <select
                 type="text"
                 name="gender"
                 id="gender"
-                className="form-style"
+                className="form-style p-2 bg-black text-white m-2 rounded-lg w-[150%] sm:w-[100%] "
                 {...register("gender", { required: true })}
                 defaultValue={user?.additionalDetails?.gender}
               >

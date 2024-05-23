@@ -26,7 +26,6 @@ function CourseDetails() {
 
   // Getting courseId from url parameter
   const { courseId } = useParams();
-  // console.log(`course id: ${courseId}`)
 
   console.log("useParams------->>>>>>", courseId);
 
@@ -79,7 +78,7 @@ function CourseDetails() {
   if (loading || !response) {
     return (
       <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
-        <div className="spinner"></div>
+        <div className="spinner">Loading...</div>
       </div>
     );
   }
@@ -101,12 +100,6 @@ function CourseDetails() {
     createdAt,
   } = response.data?.courseDetails;
 
-  // console.log(
-  //   "response.data?.courseDetails--&&&&&&&&&&&&&&&7-->",
-  //   response.data?.courseDetails
-  // );
-
-  // console.log(" _id: course_id,-----kkkkk--..", course_id);
 
   const handleBuyCourse = () => {
     if (token) {
@@ -186,7 +179,7 @@ function CourseDetails() {
                 Rs. {price}
               </p>
               <button
-                className="yellowButton text-richblack-5 bg-richblack-600 px-3 py-1 w-fit rounded-md"
+                className="yellowButton text-richblack-5 bg-richblack-600 px-3 py-1 w-fit rounded-md sm:bg-yellow-50"
                 onClick={handleBuyCourse}
               >
                 Buy Now
@@ -197,7 +190,7 @@ function CourseDetails() {
             </div>
           </div>
           {/* Courses Card */}
-          <div className="right-[1rem] top-[60px] mx-auto hidden min-h-[600px] w-1/3 max-w-[410px] translate-y-24 md:translate-y-0 lg:absolute  lg:block">
+          <div className="right-[1rem] top-[5px] mx-auto hidden min-h-[600px] w-1/3 max-w-[410px] translate-y-24 md:translate-y-0 lg:absolute  lg:block">
             <CourseDetailsCard
               course={response?.data?.courseDetails}
               setConfirmationModal={setConfirmationModal}
